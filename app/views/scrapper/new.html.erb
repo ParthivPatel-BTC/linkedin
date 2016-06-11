@@ -1,0 +1,15 @@
+<div style="width:415px;">
+	<%= form_tag  scrapper_index_path, method: :post  do |f| %>
+	  <label>Enter Profile URL: </label>
+	  <%= text_field_tag "url" %>
+	  <%= submit_tag "Save" %>
+	<% end %>
+
+	<%- if File.exist?("#{Rails.root}/profiles/out.xlsx") && current_user.present? %>
+		<%= link_to "Download", download_excel_scrapper_index_path, style: 'float:right;padding-top:-10px !important;' %>
+	<%- end %>
+	<%- if current_user.present? %>
+		</br></br>
+		<%= link_to "Sign Out", destroy_user_session_path, method: :delete, style: 'float:right' %>
+	<%- end %>
+</div>

@@ -1,0 +1,25 @@
+# References:  #http://stackoverflow.com/questions/9987171/rails-3-2-fatal-peer-authentication-failed-for-user-pgerror
+# DRY database.yml reference:
+# http://stackoverflow.com/questions/6651275/what-do-the-mean-in-this-database-yml-file
+
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  reconnect: false
+  pool: 5
+  username: postgres
+  password: postgres
+  port: 5432
+
+development:
+  <<: *common
+  database: linkedin_scrapper
+
+production:
+  <<: *common
+  database: linkedin_scrapper
+
+# Warning: The database defined as "money_tracker_test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
