@@ -200,6 +200,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   linkedin-scraper
+  nokogiri (~> 1.6, >= 1.6.8)
   pg
   pry-rails
   rails (= 4.2.3)

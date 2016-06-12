@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+
 class ScrapperController < ApplicationController
 	before_action :authenticate_user!
 	def new
@@ -14,13 +17,13 @@ class ScrapperController < ApplicationController
 			if @profile.present?
 				header = "First Name, Last Name, Designation, Organization, Linkedin Profile, City, State, Country"
 				dir = Dir.mkdir("#{Rails.root}/profiles") unless Dir.exists?("#{Rails.root}/profiles")
-				file = File.new("#{Rails.root}/profiles/out.xlsx") unless File.exist?("#{dir}/out.xlsx") 
+				file = File.new("#{Rails.root}/profiles/linkedin-profile.xlsx", "a") 
 				unless File.exist?(File.dirname(file))
 				  FileUtils.mkdir_p(File.dirname(file))
 				end
-				# city_state_country = Nokogiri::HTML(open(params[:url])).at_css(".locality").text.split(",")
-		    File.open(file, "a") do |csv|
-		    	file_last_line = IO.readlines("#{Rails.root}/profiles/out.xlsx", "a")
+				city_state_country = Nokogiri::HTML(open(params[:url])).at_css(".locality").text.split(",")
+		    File.open(file, "a:UTF-16LE:UTF-8") do |csv|
+		    	file_last_line = IO.readlines("#{Rails.root}/profiles/linkedin-profile.xlsx", "a")
 		    	csv << header unless file_last_line.first.present?
 		    	csv.write "\n"
 		    	csv << @profile.first_name
@@ -32,10 +35,10 @@ class ScrapperController < ApplicationController
 		    	csv << @profile.current_companies.first[:company]
 		    	csv << ","
 		    	csv << @profile.linkedin_url
-		    	# csv << ","
-		    	# csv << city_state_country[0]
-		    	# csv << ","
-		    	# csv << city_state_country[1]
+		    	csv << ","
+		    	csv << @profile.location
+		    	csv << ","
+		    	csv << city_state_country[1]
 		    	csv << ","
 		    	csv << @profile.country
 		    end
@@ -46,6 +49,7 @@ class ScrapperController < ApplicationController
 	end
 
 	def download_excel
-		send_file(File.open("#{Rails.root}/profiles/out.xlsx"))
+		send_file "#{Rails.root}/profiles/linkedin-profile.xlsx", :type => 'application/vnd.ms-excel; charset=utf-8'
+		# send_file(File.new("#{Rails.root}/profiles/out.xlsx", :filename => "out.xlsx", :type =>  "application/vnd.ms-excel"))
 	end
 end
