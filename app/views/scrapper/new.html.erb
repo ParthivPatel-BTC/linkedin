@@ -1,11 +1,11 @@
-<div style="width:415px;">
+<div style="width:500px;">
 	<%= form_tag  scrapper_index_path, method: :post  do |f| %>
 	  <label>Enter Profile URL: </label>
-	  <%= text_field_tag "url" %>
+	  <%= text_field_tag "url", "", style: 'width:490px;' %>
 	  <%= submit_tag "Save" %>
 	<% end %>
 
-	<%- if File.exist?("#{Rails.root}/profiles/linkedin-profile.xlsx") && current_user.present? %>
+	<%- if File.exist?("#{Rails.root}/profiles/linkedin-profiles.xlsx") && current_user.present? %>
 		<%= link_to "Download", download_excel_scrapper_index_path, style: 'float:right;padding-top:-10px !important;' %>
 	<%- end %>
 	<%- if current_user.present? %>

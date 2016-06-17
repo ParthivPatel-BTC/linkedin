@@ -26,6 +26,7 @@ gem 'linkedin-scraper'
 gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'whenever', :require => false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -46,5 +47,12 @@ group :development, :test do
   gem 'spring'
   gem 'sextant'
   gem 'pry-rails'
+
+
+  gem 'capistrano-rails', require: false
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm', github: "capistrano/rvm", require: false
+  gem 'capistrano-unicorn-nginx'
 end
 
