@@ -11,6 +11,9 @@ class ScrapperController < ApplicationController
 			begin
 				@profile = Linkedin::Profile.new(params[:url])
 			rescue Exception => e
+				puts "======>message start"
+				logger.error e.message
+				puts "======>message end"
 				flash[:notice] = "Profile not found. Please try with different profile URL"
 				redirect_to new_scrapper_path	
 			end
