@@ -26,7 +26,7 @@ gem 'linkedin-scraper'
 gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
-# gem 'whenever', :require => false
+gem 'whenever', :require => false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
