@@ -53,6 +53,14 @@ class ScrapperController < ApplicationController
 
 	def download_excel
 		send_file "#{Rails.root}/profiles/linkedin-profiles.xlsx", :type => 'application/vnd.ms-excel; charset=utf-8'
-		# send_file(File.new("#{Rails.root}/profiles/out.xlsx", :filename => "out.xlsx", :type =>  "application/vnd.ms-excel"))
+	end
+
+	def delete_file
+		if FileUtils.rm_rf("#{Rails.root}/profiles")
+			flash[:success] = 'File deleted successfully'
+		else
+			flash[:notice] = 'File not deleted. Please try again.'
+		end
+		redirect_to new_scrapper_path
 	end
 end

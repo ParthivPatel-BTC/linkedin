@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :scrapper do
     collection do
       get :download_excel
+      post :delete_file
     end
   end
 end
