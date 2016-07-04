@@ -247,7 +247,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
-  linkedin-scraper
+  linkedin-scraper (~> 2.1, >= 2.1.1)
   nokogiri (~> 1.6, >= 1.6.8)
   pg
   pry-rails
