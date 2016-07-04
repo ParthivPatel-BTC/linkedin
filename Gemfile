@@ -56,3 +56,4 @@ group :development, :test do
   gem 'capistrano-unicorn-nginx'
 end
 
+gem 'rails-rename', '~> 1.0.0'

@@ -1,9 +1,9 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.5.0'
 
 set :application, 'linkedin-scraper'
-set :repo_url, 'git@github.com:ParthivPatel-BTC/linkedin-scrapper.git'
-set :deploy_to, '/inspectdate'
+set :repo_url, 'git@github.com:ParthivPatel-BTC/linkedin.git'
+set :deploy_to, '/home/shailesh/linkedin'
 set :stage, :production
 set :user, 'shailesh'
 set :pty, true
