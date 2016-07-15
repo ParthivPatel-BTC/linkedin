@@ -1,3 +1,4 @@
+<br/><br/>
 <div style="width:500px;">
 	<%= form_tag  scrapper_index_path, method: :post  do |f| %>
 	  <label>Enter Profile URL: </label>
@@ -5,10 +6,10 @@
 	  <%= submit_tag "Save" %>
 	<% end %>
 
-	<%- if File.exist?("#{Rails.root}/profiles/linkedin-profiles.xlsx") && current_user.present? %>
+	<%- if File.exist?("#{Rails.root}/profiles/linkedin-profiles.csv") && current_user.present? %>
 		<%= link_to "Download", download_excel_scrapper_index_path, style: 'float:right;padding-top:-10px !important;' %>
 		<br/><br/>
-		<%= link_to "Delete File", delete_file_scrapper_index_path, method: :post, style: 'float:right;padding-top:-10px !important;' %>
+		<%= link_to "Delete File", delete_file_scrapper_index_path, data: { confirm: 'Are you sure you want to delete this file?' }, method: :post, style: 'float:right;padding-top:-10px !important;' %>
 	<%- end %>
 
 	<%- if current_user.present? %>

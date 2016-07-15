@@ -1,3 +1,7 @@
 <%- flash.each do |name, message| %>
-  <div><%= message %>
+	<% if name == "success" %>
+  	<div style='color:white;background-color:green;'><%= message %></div>
+  <% elsif name == "notice" %>
+    <div style='color:white;background-color:red;'><%= message %></div>
+  <% end %>
 <%- end %>
